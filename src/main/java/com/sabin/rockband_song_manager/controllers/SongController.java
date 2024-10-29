@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequestMapping("/api/songs")
+@RestController
 public class SongController {
 
 
@@ -25,24 +27,24 @@ public class SongController {
         return new ResponseEntity<>(songService.saveSong(songToPersist), HttpStatus.OK);
     }
 
-    @GetMapping("{songName}")
+    @GetMapping("/{songName}")
     public ResponseEntity<List<SongDTO>> retrieveSongBySpecs(
             @RequestParam(value = "songName", required = false) String songName,
-            @RequestParam(value = "yearOfRelease", required = false) Short yearOfRelease){
+            @RequestParam(value = "yearOfRelease", required = false) Short yearOfRelease) {
 
         return ResponseEntity.ok(songService.getSongsByCriteria(songName, yearOfRelease));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<SongDTO> updateSongName (@RequestBody SongNameDTO newSongName,
-                                                   @PathVariable ("id") Short id){
-        return new ResponseEntity<>(songService.updateSongName(id,newSongName.getNewSongName()),
+    public ResponseEntity<SongDTO> updateSongName(@RequestBody SongNameDTO newSongName,
+                                                  @PathVariable("id") Short id) {
+        return new ResponseEntity<>(songService.updateSongName(id, newSongName.getNewSongName()),
                 HttpStatus.OK);
 
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteSongbyId (@PathVariable Short id){
+    public ResponseEntity<Void> deleteSongbyId(@PathVariable Short id) {
         songService.deleteSongById(id);
         return ResponseEntity.noContent().build();
 

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class SongDTO {
-    private String title;
+    private String name;
     private String composer;
     private Short yearOfRelease;
 }

@@ -13,15 +13,15 @@ public class SongEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
 
-    @NotBlank(message = "Name cannot be blank")
+   // @NotBlank(message = "Name cannot be blank")
     @Column(name = "song_name")
     private String name;
 
-    @NotBlank(message = "Composer must be named")
+  //  @NotBlank(message = "Composer must be named")
     @Column(name = "song_composer")
     private String composer;
 
-    @NotBlank(message = "Release year must be mentioned")
+   // @NotBlank(message = "Release year must be mentioned")
     @Column(name = "year_of_release")
     private Short yearOfRelease;
 }
